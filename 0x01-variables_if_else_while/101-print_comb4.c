@@ -13,15 +13,15 @@ int main(void)
 	{
 		for (l2 = l1 + 1; l2 < 9; l2++)
 		{
-			for (l3 = digit2 + 1; l3 < 10; l++)
+			for (l3 = l2 + 1; l3 < 10; l3++)
 			{
 				putchar((l1 % 10) + '0');
 				putchar((l2 % 10) + '0');
 				putchar((l3 % 10) + '0');
 
-				if (digit1 == 7 && digit2 == 8 && digit3 == 9)
+				if (l1 == 7 && l2 == 8 && l3 == 9)
 					continue;
-				
+
 				putchar(',');
 				putchar(' ');
 			}
