@@ -8,7 +8,7 @@
  */
 int main(void)
 {
-	unsigned long num1 = 0, num2 = 1 =, sum;
+	unsigned long num1 = 0, num2 = 1, sum;
 	float tot_sum;
 
 	while (1)
@@ -18,7 +18,7 @@ int main(void)
 			break;
 
 		if ((sum % 2) == 0)
-			tot_sm += sum;
+			tot_sum += sum;
 
 		num1 = num2;
 		num2 = sum;
