@@ -3,7 +3,7 @@
 /**
  *main - prints out _putchar followed by a new line
  *
- * Return: 0 (sucess)
+ * Return:  Always 0 (sucess)
  */
 int main(void)
 {
