@@ -9,14 +9,14 @@
 int main(void)
 {
 	int count;
-	unsigned long n1 = 0, num2 = 1, sum;
+	unsigned long n1 = 0, n2 = 1, sum;
 
 	for (count = 0; count < 50; count++)
 	{
-		sum = num1 + num2;
+		sum = n1 + n2;
 		printf("%lu", sum);
 
-		num1 = num2;
+		n1 = n2;
 		num2 = sum;
 
 		if (count == 49)
