@@ -1,17 +1,20 @@
 #include "3-calc.h"
 
 /**
- * main - program that perfroms simple operations
- * @argc: number of arguments
- * @argv: array of arguments
- *
- * Return: Always 0 (Success)
- */
+  * main - performs simple calculations
+  *
+  * @argc: number of arguments passed
+  * @argv: array of arrgc elements
+  *
+  * Return: Success --> return of the operation
+  *           98  --> wrong number of arguments
+  *           99  --> wrong operator, refer to 3-get_op_func.c
+  *          100  --> trying to divide by 0
+  */
 int main(int argc, char *argv[])
 {
-	int arg1, arg2, result;
-	char o;
-	int (*func)(int, int);
+	int a, b, result;
+	char *op;
 
 	if (argc != 4)
 	{
@@ -19,28 +22,18 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	arg1 = atoi(argv[1]);
-	arg2 = atoi(argv[3]);
-
-	func = get_op_func(argv[2]);
-
-	if (!func)
+	a = atoi(argv[1]);
+	b = atoi(argv[3]);
+	op = argv[2];
+	result = get_op_func(op)(a, b);
+	if (!result)
 	{
 		printf("Error\n");
 		exit(99);
 	}
-
-	o = *argv[2];
-
-	if ((o == '/' || o == '%') && arg2 == 0)
+	else
 	{
-		printf("Error\n");
-		exit(100);
+		printf("%d\n", result);
 	}
-
-	result = func(arg1, arg2);
-
-	printf("%d\n", result);
-
 	return (0);
 }
