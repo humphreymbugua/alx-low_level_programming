@@ -1,14 +1,28 @@
-#ifndef LISTS_H
-#define LISTS_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
+#include <stdlib.h>
+#include <stdarg.h>
 
+int _putchar(char c);
+void _puts_recursion(char *s);
+void _print_number(int n);
+char *_strdup(const char *str, int *ptr);
+unsigned int _sizeof(const char *s);
+void __attribute__((constructor))before_main(void);
+
+/*
+ * Structs, enums and unions definitions
+ * Typedefs
+ * Function prototypes
+ */
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
  * @len: length of the string
  * @next: points to the next node
+ *
  * Description: singly linked list node structure
  */
-
 typedef struct list_s
 {
 	char *str;
@@ -21,5 +35,4 @@ size_t list_len(const list_t *h);
 list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
 void free_list(list_t *head);
-
-#endif
+#endif /* _MAIN_H_ */
