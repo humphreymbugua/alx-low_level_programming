@@ -1,113 +1,41 @@
 #include <stdlib.h>
+#include <string.h>
 #include "lists.h"
+
 /**
- * add_node_end- adds nodes to end of linked list
- * @head: a pointer to a linked list head
- * @str: initializer node element string
- * Description: Attaches nodes to the beginning of Linked list
- * and initializes the len of list to the length of the string
- *
- * Return: address of new  nodes else NULL
+ * add_node_end - adds a new node at the end of a linked list
+ * @head: double pointer to the list_t list
+ * @str: string to put in the new node
+ * Return: address of the new element, or NULL if it failed
  */
+
 list_t *add_node_end(list_t **head, const char *str)
 {
-	int slen, *ptr;
-	char *temp;
-	list_t *new, *lptr;
+	list_t *new;
+	list_t *temp = *head;
+	unsigned int len = 0;
 
-	slen = 0;
-	ptr = &slen;
-	temp = _strdup(str, ptr);
+	while (str[len])
+		len++;
 
-	/* if temp is null means it failed to allocate heap memory*/
-	if (!temp)
-		return (NULL);
-
-	/* else assign values to the a new node */
 	new = malloc(sizeof(list_t));
-	/**
-	 * check to ensure that malloc allocation of memory is
-	 * successful
-	 */
 	if (!new)
 		return (NULL);
 
-	new->str = temp;
-	new->len = slen;
+	new->str = strdup(str);
+	new->len = len;
 	new->next = NULL;
 
-	lptr = *head;
-	if (lptr != NULL)/*handle if list is not empty*/
+	if (*head == NULL)
 	{
-		/*traverse to last element*/
-		while (lptr->next != NULL)
-		{
-			lptr = lptr->next;
-		}
-		/* assign our new item at end of list*/
-		lptr->next = new;
-	}
-	/* if list is empty add new item at the end */
-	else
 		*head = new;
-	return (*head);
-}
+		return (new);
+	}
 
-/**
- * _strdup- duplicates a string
- * @str: String to be duplicated
- * @ptr: Integer pointer variable to update string length
- *
- * Description- Dynamically allocates memory in heap and saves and returns a
- * copy of the input string str
- *
- * Return: char pointer else NULL
- */
+	while (temp->next)
+		temp = temp->next;
 
-char *_strdup(const char *str, int *ptr)
-{
-	int i;
-	int strsize;
-	char *dynmemptr;
+	temp->next = new;
 
-	if (str == NULL)
-		return (NULL);
-	strsize = _sizeof(str);
-
-	dynmemptr = (char *) malloc((sizeof(char) * strsize) + 1);
-
-	if (dynmemptr == NULL)
-		return (NULL);
-
-	for (i = 0; i < (int)(sizeof(char) * strsize) ; i++)
-		dynmemptr[i] = *str++;
-	dynmemptr[i + 1] = '\n';
-
-	/* update the pointer to assign length of string*/
-	*ptr = strsize;
-
-	return (dynmemptr);
-
-}
-
-/**
- * _sizeof- finds the length of a string
- * @s: String to find the length
- *
- * Description- Returns the length of a string less the null pointer '\0'
- *
- * Return: positive integer
- */
-unsigned int _sizeof(const char *s)
-{
-	int i = 0;
-	int count = 0;
-
-	for (; s[i] != '\0'; i++)
-		count++;
-
-	if (count < 1)
-		return (0);
-
-	return (count);
+	return (new);
 }
